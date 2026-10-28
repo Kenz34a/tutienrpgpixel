@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="theme-color" content="#101f26" />
+    <meta name="description" content="Vân Mộng Tiên Lộ — một chuyến phiêu lưu tu tiên pixel. Ngự kiếm, khám phá linh cảnh và viết nên tiên lộ của riêng bạn." />
+    <title>Vân Mộng · Tiên Lộ</title>
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="./" aria-label="Vân Mộng Tiên Lộ"><span class="brand-seal" data-icon="sword"></span><span><strong>VÂN MỘNG</strong><small>T I Ê N &nbsp; L Ộ</small></span></a>
+      <nav aria-label="Menu chính" class="main-nav">
+        <button class="nav-item active" data-action="world"><i data-icon="world"></i><span>Thế giới</span></button>
+        <button class="nav-item" data-action="character"><i data-icon="person"></i><span>Nhân vật</span></button>
+        <button class="nav-item" data-action="inventory"><i data-icon="bag"></i><span>Hành trang</span></button>
+        <button class="nav-item" data-action="cultivation"><i data-icon="lotus"></i><span>Tu luyện</span></button>
+        <button class="nav-item expansion-nav" data-action="systems"><i data-icon="spark"></i><span>Cửu Thiên</span><b>MỚI</b></button>
+      </nav>
+      <div class="topbar-right"><button class="currencies" data-action="treasury" aria-label="Linh Thạch Các"><span title="Linh thạch"><i class="jade-gem"></i><b id="currency-jade">420</b></span><span title="Tiên thạch" class="higher-currency"><i class="jade-gem fairy-gem"></i><b id="currency-fairy">0</b></span><span title="Thần thạch" class="higher-currency"><i class="jade-gem divine-gem"></i><b id="currency-divine">0</b></span><span title="Đồng"><i class="gold-coin"></i><b id="currency-coins">1.240</b></span></button><span class="top-divider"></span><button class="icon-button" data-action="sound" aria-label="Bật âm thanh" title="Âm thanh"><i data-icon="sound-off" id="sound-icon"></i></button><button class="icon-button" data-action="settings" aria-label="Cài đặt" title="Cài đặt"><i data-icon="settings"></i></button></div>
+    </header>
+
+    <main class="game-shell" aria-label="Game Vân Mộng Tiên Lộ">
+      <canvas id="world" tabindex="0" aria-label="Bản đồ Vân Mộng Cốc. A D di chuyển, Space nhảy, J đánh, phím 1 đến 4 dùng kỹ năng, F ngự kiếm."></canvas>
+      <div class="scene-vignette"></div>
+      <div class="corner corner-tl"></div><div class="corner corner-tr"></div><div class="corner corner-bl"></div><div class="corner corner-br"></div>
+
+      <section class="player-hud" aria-label="Trạng thái nhân vật">
+        <button class="portrait-button" data-action="character" aria-label="Mở nhân vật"><canvas id="portrait" width="64" height="64"></canvas><span id="level-badge">1</span></button>
+        <div class="player-info"><div class="player-heading"><strong>Lữ Khách</strong><span class="realm-dot"></span><span id="realm-label">Luyện Khí · Tầng 1</span></div><div class="stat-track health-track"><div id="hp-fill"></div><span id="hp-label">1.240 / 1.240</span><i data-icon="heart"></i></div><div class="stat-track mana-track"><div id="mp-fill"></div><span id="mp-label">320 / 380</span><i data-icon="spark"></i></div></div>
+      </section>
+      <div id="active-buffs" class="active-buffs" aria-label="Hiệu quả đan dược"></div>
+
+      <div class="zone-heading"><div class="zone-eyebrow"><span></span> THANH VÂN GIỚI <span></span></div><h1 id="zone-title">Vân Mộng Cốc</h1><p><i></i><span id="zone-description">Gió khẽ lay, tiên lộ vừa mở</span></p></div>
+
+      <button class="quest-card" data-action="quests" aria-label="Xem nhiệm vụ"><div class="quest-eyebrow"><i data-icon="scroll"></i> HÀNH TRÌNH TIÊN ĐẠO <span>›</span></div><strong id="quest-name">Khởi đầu tiên lộ</strong><span class="quest-objective"><i id="quest-check"></i><span id="quest-objective">Đánh bại Mộc Yêu</span><b id="quest-count">0/3</b></span><div class="quest-reward"><span>Phần thưởng</span><span><i class="jade-gem"></i> 80 <i class="xp-spark">*</i> 150 tu vi</span></div><span id="quest-claim" hidden>Hoàn thành · Nhấn để nhận thưởng</span></button>
+
+      <button class="minimap-panel" data-action="map" aria-label="Mở bản đồ"><div class="minimap-heading"><span><i class="live-dot"></i> VÂN MỘNG CỐC</span><i data-icon="expand"></i></div><canvas id="minimap" width="192" height="86"></canvas><div class="minimap-caption"><span id="coordinates">560, 570</span><span>Mở bản đồ <b>></b></span></div></button>
+
+      <div class="world-tools"><button data-action="systems" class="world-tool system-world-tool" aria-label="Cửu Thiên"><i data-icon="spark"></i><span>Cửu Thiên · Vạn Giới</span></button><button data-action="atlas" class="world-tool" aria-label="Đại bản đồ"><i data-icon="world"></i><span>120 linh cảnh</span></button><button data-action="skills" class="world-tool" aria-label="Kiếm quyết"><i data-icon="swords"></i><span>Kiếm quyết [K]</span></button><button data-action="shop" class="world-tool" aria-label="Thương nhân"><i data-icon="shop"></i><span>Thương nhân</span></button><button data-action="quests" class="world-tool" aria-label="Nhiệm vụ"><i data-icon="scroll"></i><span>Nhiệm vụ</span><b id="quest-notice">!</b></button><button data-action="help" class="world-tool" aria-label="Hướng dẫn"><i data-icon="help"></i><span>Hướng dẫn</span></button></div>
+      <div id="tribulation-hud" class="tribulation-hud" hidden><div><i data-icon="storm"></i><strong>CỬU TRỌNG THIÊN KIẾP</strong><span id="tribulation-wave">0 / 9</span></div><p>Né vùng sét · Shift lướt · Dùng hộ thể & đan dược</p><div id="tribulation-progress"></div></div>
+
+      <button class="interaction-prompt" id="interaction-prompt" data-action="interact" hidden><kbd>E</kbd><span>Trò chuyện với Thanh Vân Tử</span></button>
+      <div class="meditation-notice" id="meditation-notice" hidden><i data-icon="lotus"></i><span>Đang hấp thu linh khí… <b>+8 tu vi / giây</b></span><button data-action="meditate">Dừng <kbd>M</kbd></button></div>
+      <div class="toasts" id="toasts" aria-live="polite"></div>
+
+      <section class="journal" aria-label="Nhật ký hành trình"><div class="journal-tabs"><button class="selected" data-action="journal">Nhật ký</button><button data-action="help">Hướng dẫn</button><span class="local-tag"><i></i> Đơn nhân</span></div><div id="journal-entries"><p><time>Tiên lộ</time> Chào mừng đến Vân Mộng Cốc.</p><p><time class="npc-time">Thanh Vân Tử</time> Hữu duyên, hãy đến gặp ta.</p></div><div class="journal-footer"><i data-icon="chat"></i><span>Mỗi bước chân, một đoạn tiên duyên.</span></div></section>
+
+      <section class="action-dock" aria-label="Kỹ năng"><div class="cultivation-track"><span>LUYỆN KHÍ <b id="xp-level">I</b></span><div><i id="xp-fill"></i></div><span id="xp-label">36 / 100 tu vi</span></div><div class="skills-row"><button class="basic-skill skill" data-skill="attack" title="Trảm kiếm · J"><span class="keycap">J</span><canvas width="48" height="48" data-skill-art="attack"></canvas><span class="skill-label">Trảm kiếm</span><div class="cooldown"></div></button><span class="skill-divider"></span><button class="skill" data-skill="swords" title="Vạn Kiếm Quy Tông · 25 linh lực"><span class="keycap">1</span><canvas width="48" height="48" data-skill-art="swords"></canvas><span class="skill-label">Vạn kiếm</span><div class="cooldown"></div></button><button class="skill" data-skill="flame" title="Phượng Hỏa · 40 linh lực"><span class="keycap">2</span><canvas width="48" height="48" data-skill-art="flame"></canvas><span class="skill-label">Phượng hỏa</span><div class="cooldown"></div></button><button class="skill" data-skill="heal" title="Thanh Tâm Quyết · 50 linh lực"><span class="keycap">3</span><canvas width="48" height="48" data-skill-art="heal"></canvas><span class="skill-label">Thanh tâm</span><div class="cooldown"></div></button><button class="skill" data-skill="storm" title="Thiên Lôi · 70 linh lực"><span class="keycap">4</span><canvas width="48" height="48" data-skill-art="storm"></canvas><span class="skill-label">Thiên lôi</span><div class="cooldown"></div></button><span class="skill-divider"></span><button class="skill potion-skill" data-skill="potion" title="Hồi Xuân Đan · H"><span class="keycap">H</span><canvas width="48" height="48" data-skill-art="potion"></canvas><span class="potion-count" id="potion-count">6</span><span class="skill-label">Hồi xuân</span><div class="cooldown"></div></button></div><div class="keyboard-hint"><span><kbd>A</kbd><kbd>D</kbd> Di chuyển</span><i>·</i><span><kbd>SPACE</kbd> Khinh công</span><i>·</i><span><kbd>E</kbd> Tương tác</span></div></section>
+
+      <div class="stance-controls"><button id="flight-button" class="stance-button active" data-action="flight" title="Bật / tắt ngự kiếm · F"><i data-icon="sword"></i><span>Ngự kiếm</span><kbd>F</kbd></button><button id="auto-button" class="stance-button" data-action="auto" title="Bật / tắt tự chiến · T"><i data-icon="target"></i><span>Tự chiến</span><kbd>T</kbd></button></div>
+      <div class="touch-controls"><button data-hold="left" aria-label="Sang trái">‹</button><button data-hold="right" aria-label="Sang phải">›</button><button data-hold="up" aria-label="Bay lên hoặc nhảy">↑</button></div>
+    </main>
+
+    <footer class="statusbar"><span><i class="status-dot"></i> VÂN MỘNG · TIÊN LỘ <b>CỬU THIÊN 2.0</b></span><span class="footer-quote">Một niệm nhập đạo, vạn dặm trường sinh.</span><span><i data-icon="save"></i><span id="save-status">Tự động lưu trên thiết bị</span><button data-action="help">Phím tắt <kbd>?</kbd></button></span></footer>
+
+    <dialog id="game-dialog"><div id="dialog-content"></div></dialog>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
